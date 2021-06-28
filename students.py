@@ -11,13 +11,13 @@ cursor = conn.cursor()
 # first_name = 'Jake'
 # last_name = 'White'
 # age = 22
-#
+
 # jane = ('Jane', 'Air', 18)
-#
+
 # students = [
-#     ('Jane', 'Ostin', 19),
-#     ('Jack', 'Scott', 22),
-#     ('Bob', 'Green', 20)
+# 	('Jane', 'Ostin', 19),
+# 	('Jack', 'Scott', 22),
+# 	('Bob', 'Green', 20)
 # ]
 
 # Bad approach! SQL injection danger!
@@ -35,10 +35,23 @@ cursor = conn.cursor()
 
 # cursor.executemany(insert_query, students)
 
+# cursor.execute("SELECT * FROM students WHERE first_name IS 'James';")
+
+# cursor.execute("UPDATE students SET last_name = 'Austen' WHERE last_name IS 'Ostin';")
+
+cursor.execute("DELETE FROM students WHERE last_name IS 'Green';")
+
+# for row in cursor:
+#     print(row)
+
+# print(cursor.fetchone())
+# print(cursor.fetchall())
+
+
 cursor.execute("SELECT * FROM students;")
 
-for row in cursor:
-    print(row)
+data = cursor.fetchall()
+[print(row) for row in data]
 
 conn.commit()
 
