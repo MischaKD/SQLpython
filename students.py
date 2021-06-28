@@ -8,17 +8,17 @@ cursor = conn.cursor()
 
 # cursor.execute("INSERT INTO students VALUES ('James', 'Braun', 21);")
 
-first_name = 'Jake'
-last_name = 'White'
-age = 22
-
-jane = ('Jane', 'Air', 18)
-
-students = [
-    ('Jane', 'Ostin', 19),
-    ('Jack', 'Scott', 22),
-    ('Bob', 'Green', 20)
-]
+# first_name = 'Jake'
+# last_name = 'White'
+# age = 22
+#
+# jane = ('Jane', 'Air', 18)
+#
+# students = [
+#     ('Jane', 'Ostin', 19),
+#     ('Jack', 'Scott', 22),
+#     ('Bob', 'Green', 20)
+# ]
 
 # Bad approach! SQL injection danger!
 # insert_query = f"INSERT INTO students VALUES ('{first_name}', '{last_name}', {age});"
@@ -26,16 +26,19 @@ students = [
 
 # Good approach!
 
-insert_query = "INSERT INTO students VALUES (?, ?, ?);"
+# insert_query = "INSERT INTO students VALUES (?, ?, ?);"
 
 
 # cursor.execute(insert_query, (first_name, last_name, age))
 # cursor.execute(insert_query, (jane))
 
 
-cursor.executemany(insert_query, students)
+# cursor.executemany(insert_query, students)
 
+cursor.execute("SELECT * FROM students;")
 
+for row in cursor:
+    print(row)
 
 conn.commit()
 
